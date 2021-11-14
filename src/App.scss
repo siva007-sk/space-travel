@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&display=swap");
+$primary: hsl(231, 77, 90);
+$secondary: hsl(230, 35, 7);
+$white: hsl(0, 0, 100);
+$black: hsl(0, 0, 0);
+$Heading1: 150px;
+$Heading2: 100px;
+$Heading3: 56px;
+$Heading4: 32px;
+%Heading5 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  letter-spacing: 4.75px;
+}
+$subHeading1: 28px;
+%subHeading2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+}
+
+.App {
+  height: 100vh;
+  font-family: "Bellefair", serif;
+}
+
+@mixin backgroundImage($url: "") {
+  background-image: url($url);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.homepage-container {
+  @include backgroundImage($url: "./assets/home/background-home-tablet.jpg");
+  color: $white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .flex-container-center {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 60%;
+    align-items: center;
+  }
+  section {
+    padding: 0px 24px;
+  }
+  h1 {
+    font-size: 80px;
+    font-weight: inherit;
+    text-transform: uppercase;
+  }
+  h5 {
+    @extend %Heading5;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  p {
+    @extend %subHeading2;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: center;
+  }
+  .btn-circle-large {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    font-size: 16px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    border: 1px solid $white;
+    &:hover {
+      box-shadow: 0px 0px 0px 40px hsla(0, 4%, 70%, 0.4);
+      transition: box-shadow ease-in 0.3s;
+    }
+  }
+}
+
+.nav-bar {
+  background-color: hsla(0, 0%, 0%, 0);
+  overflow: hidden;
+  padding: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45vw;
+    background-color: $secondary;
+
+    li {
+      height: 100px;
+      align-items: center;
+      display: flex;
+      &:hover {
+        border-bottom: 3px solid hsla(0, 0%, 100%, 0.473);
+        transition: border-bottom ease-in 0.3s;
+      }
+      &:active {
+        border-bottom: 3px solid hsl(0, 0%, 100%);
+      }
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+  .menu-toggle-icon {
+    display: none;
+  }
+}
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 768px) {
+  .nav-bar {
+    ul {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 90px;
+      height: 30%;
+      width: 100%;
+      flex-direction: column;
+      right: 20px;
+      left: 1px;
+      transition: opacity ease-in 0.3s;
+    }
+    .menu-toggle-icon {
+      display: block;
+    }
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 768px) {
+  .nav-bar.menu ul {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
